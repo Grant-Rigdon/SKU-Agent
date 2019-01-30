@@ -24,6 +24,11 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
+  },
 })
 
 class ItemModal extends React.Component {
