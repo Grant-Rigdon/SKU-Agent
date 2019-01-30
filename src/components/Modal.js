@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import InputLabel from '@material-ui/core/InputLabel'
+import Input from '@material-ui/core/Input'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 
 
 const styles = theme => ({
@@ -24,35 +24,35 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
-});
+})
 
 class ItemModal extends React.Component {
   state = {
     open: false,
     age: '',
-  };
+  }
 
   handleChange = name => event => {
-    this.setState({ [name]: Number(event.target.value) });
-  };
+    this.setState({ [name]: Number(event.target.value) })
+  }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+    this.setState({ open: true })
+  }
 
   handleClose = () => {
-    this.setState({ open: false });
-  };
+    this.setState({ open: false })
+  }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
 
     return (
       <div>
         <Fab color="primary" aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
-            <AddIcon />
+          <AddIcon />
         </Fab>
-        
+
         <Dialog
           disableBackdropClick
           disableEscapeKeyDown
@@ -103,12 +103,12 @@ class ItemModal extends React.Component {
           </DialogActions>
         </Dialog>
       </div>
-    );
+    )
   }
 }
 
 ItemModal.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(ItemModal);
+export default withStyles(styles)(ItemModal)

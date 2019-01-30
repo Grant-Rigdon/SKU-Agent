@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import AppBar from './components/AppBar'
 import Login from './components/Login'
 import Register from './components/Register'
-import Accordian from './components/Accordian';
-import ItemCard from './components/ItemCard';
+import Accordion from './components/Accordion'
+import ItemCard from './components/ItemCard'
 import ItemModal from './components/Modal'
-function App (){
-    return(
+function App() {
+    return (
         <div>
             <AppBar />
             Hello World
@@ -15,7 +15,7 @@ function App (){
             <ItemCard />
             <Login />
             <Register />
-            <Accordian />
+            <Accordion />
         </div>
     )
 }

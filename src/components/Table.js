@@ -37,9 +37,7 @@ class TablePaginationActions extends React.Component {
   }
 
   handleLastPageButtonClick = event => {
-    this.props.onChangePage(
-      event,
-      Math.max(0, Math.ceil(this.props.count / this.props.rowsPerPage) - 1),
+    this.props.onChangePage(event, Math.max(0, Math.ceil(this.props.count / this.props.rowsPerPage) - 1),
     )
   }
 
@@ -152,13 +150,11 @@ class StorageTable extends React.Component {
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <TableHead>
-                <TableRow>
-                    <TableCell>Dessert (100g serving)</TableCell>
-                    <TableCell align="right">Calories</TableCell>
-                    <TableCell align="right">Fat (g)</TableCell>
-                    <TableCell align="right">Carbs (g)</TableCell>
-                    <TableCell align="right">Protein (g)</TableCell>
-                </TableRow>
+              <TableRow>
+                <TableCell>Item Name</TableCell>
+                <TableCell>SKU</TableCell>
+                <TableCell align="right">Quantity</TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
