@@ -6,6 +6,7 @@ import Register from './components/Register'
 import Accordion from './components/Accordion'
 import ItemCard from './components/ItemCard'
 import ItemModal from './components/Modal'
+
 function App() {
     return (
         <div>
