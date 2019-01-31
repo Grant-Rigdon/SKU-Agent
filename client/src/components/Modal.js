@@ -25,9 +25,10 @@ const styles = theme => ({
     minWidth: 120,
   },
   fab: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 2,
+    backgroundColor: theme.palette.secondary.main
   },
 })
 
@@ -54,7 +55,7 @@ class ItemModal extends React.Component {
 
     return (
       <div>
-        <Fab color="primary" aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
+        <Fab aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
           <AddIcon />
         </Fab>
 
