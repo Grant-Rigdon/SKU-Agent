@@ -17,11 +17,18 @@ const styles = theme => ({
         elevation: 1,
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
-        width: 900,
-        margin: '0 auto'
+        minWidth: 320,
+        maxWidth: 400,
+        height: 'auto',
+        position: 'absolute',
+        top: '20%',
+        left: 0,
+        right: 0,
+        margin: 'auto'
     },
     button: {
-        marginTop: theme.spacing.unit * 1.5
+        marginTop: theme.spacing.unit * 1.5,
+        color: theme.palette.secondary
     }
 })
 
@@ -75,7 +82,7 @@ class Login extends React.Component {
                             ),
                         }} />
                     <br />
-                    <Button variant="contained" color="primary" className={classes.button}>
+                    <Button variant="contained" className={classes.button}>
                         Login
                     </Button>
                 </Paper>

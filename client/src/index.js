@@ -2,34 +2,37 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import { grey } from '@material-ui/core/colors'
-import { yellow } from '@material-ui/core/colors'
+import { CssBaseline } from "@material-ui/core";
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            light: grey[200],
-            main: grey[600],
-            dark: '#EF6C00',
-            contrastText: 'rgb(0,0,0)'
+            light: '#819ca9',
+            main: '#546e7a',
+            dark: '#29434e',
+            contrastText: '#ffffff'
         },
         secondary: {
-            light: yellow[200],
-            main: yellow[600],
-            dark: '#EF6C00',
-            contrastText: 'rgb(0,0,0)'
+            light: '##ffff52',
+            main: '#0892d0',
+            dark: '#c7a600',
+            contrastText: '#000000'
         },
         error: {
-            light: grey[200],
-            main: grey[600],
-            dark: '#EF6C00',
-            contrastText: 'rgb(0,0,0)'
+            light: '#ff5131',
+            main: '#d50000',
+            dark: '#9b0000',
+            contrastText: '#ffffff'
         },
+        background: {
+            default: '#e4e9eb'
+        }
     }
 })
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
     </MuiThemeProvider>,
     document.getElementById("root")

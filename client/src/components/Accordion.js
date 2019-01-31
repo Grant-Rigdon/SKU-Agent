@@ -10,7 +10,17 @@ import StorageTable from './Table'
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    minWidth: 320,
+    maxWidth: 768,
+    height: 'auto',
+    position: 'absolute',
+    top: '8%',
+    left: 0,
+    right: 0,
+    margin: 'auto'
+  },
+  panel: {
+    marginTop: 0
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -45,7 +55,7 @@ class Accordion extends React.Component {
             <Typography className={classes.heading}>Location Name</Typography>
             <Typography className={classes.secondaryHeading}>Type of Items Stored Here</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails >
             <StorageTable />
           </ExpansionPanelDetails>
         </ExpansionPanel>

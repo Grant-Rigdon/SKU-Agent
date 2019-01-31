@@ -9,10 +9,22 @@ import Badge from '@material-ui/core/Badge'
 
 const styles = theme => ({
   root: {
-    ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+    paddingLeft: theme.spacing.unit * 2,
+    minWidth: 160,
+    maxWidth: 320,
+    height: 'auto'
   },
+  buttonContainer: {
+    marginTop: theme.spacing.unit * 2
+  },
+  button: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  badge: {
+    backgroundColor: theme.palette.secondary.main
+  }
 })
 
 function Item(props) {
@@ -27,9 +39,11 @@ function Item(props) {
         <Typography component="p">
           Paper can be used to build surface or other elements for your application.
         </Typography>
-        <Badge color="primary" badgeContent={4} className={classes.margin}>
-          <Button variant="contained">Button</Button>
-        </Badge>
+        <div className={classes.buttonContainer}>
+          <Badge className={classes.badge} badgeContent={4}>
+            <Button variant="contained" size="small" className={classes.button}>Button</Button>
+          </Badge>
+        </div>
       </Paper>
     </div>
   )

@@ -17,8 +17,14 @@ const styles = theme => ({
         elevation: 1,
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
-        width: 900,
-        margin: '0 auto'
+        minWidth: 320,
+        maxWidth: 400,
+        height: 'auto',
+        position: 'absolute',
+        top: '20%',
+        left: 0,
+        right: 0,
+        margin: 'auto'
     },
 })
 

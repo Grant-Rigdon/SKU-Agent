@@ -20,6 +20,7 @@ const actionsStyles = theme => ({
     flexShrink: 0,
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 2.5,
+    marginTop: 0
   },
 })
 
@@ -101,7 +102,7 @@ function createData(name, calories, fat) {
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: 0,
   },
   table: {
     minWidth: 500,

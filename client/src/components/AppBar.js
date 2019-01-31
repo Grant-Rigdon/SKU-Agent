@@ -6,17 +6,13 @@ import Typography from '@material-ui/core/Typography'
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        backgroundColor: theme.palette.background.default
     },
     appName: {
-        backgroundColor: theme.palette.primary,
-        color: theme.palette.primary.light,
-        flexGrow: 1,
+        background: theme.palette.primary,
+        color: theme.palette.primary.text,
         marginLeft: 10
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
+    }
 })
 
 
@@ -24,7 +20,7 @@ function Nav(props) {
     const { classes } = props
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="primary">
+            <AppBar position="static">
             <Typography variant="h6" color="inherit" className={classes.appName}>
                 SKU Agent
             </Typography>
