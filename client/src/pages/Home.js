@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Accordian from '../components/Accordion'
 import { withStyles } from '@material-ui/core/styles'
+import LocationModal from '../components/LocationModal'
 
 const styles = theme => ({
     root: {
@@ -24,6 +25,7 @@ class Home extends Component {
         return (
             <div className={classes.root}>
                 <Accordian />
+                <LocationModal />
             </div>
         )
     }
