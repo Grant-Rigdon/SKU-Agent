@@ -6,14 +6,11 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import InputLabel from '@material-ui/core/InputLabel'
-import Input from '@material-ui/core/Input'
-import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import TextField from '@material-ui/core/TextField'
+import API from '../utils/API'
 
 
 const styles = theme => ({
@@ -37,6 +34,7 @@ class LocationModal extends React.Component {
   state = {
     open: false,
     name: '',
+    storage: []
   }
 
   handleChange = name => event => {
@@ -49,6 +47,25 @@ class LocationModal extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false })
+  }
+
+  loadStorage = () => {
+    API.getStorage()
+      .then(res => {
+        this.setState({ storage: res.data })
+      })
+  }
+
+  onFormSubmit = event => {
+    event.preventDefault()
+    API.addStorage({
+      name: this.state.name
+    })
+    .then( () => this.handleClose())
+  }
+
+  componentDidMount() {
+    this.loadStorage()
   }
 
   render() {
@@ -68,17 +85,17 @@ class LocationModal extends React.Component {
         >
           <DialogTitle>Fill the form</DialogTitle>
           <DialogContent>
-            <form className={classes.container}>
+            <form className={classes.container} onSubmit={this.onFormSubmit}>
               <FormControl className={classes.formControl}>
                 <TextField
-                        id="outlined-name"
-                        label="Location Name"
-                        className={classes.textField}
-                        value={this.state.name}
-                        onChange={this.handleChange('name')}
-                        margin="normal"
-                        variant="outlined"
-                    />
+                  id="outlined-name"
+                  label="Location Name"
+                  className={classes.textField}
+                  value={this.state.name}
+                  onChange={this.handleChange('name')}
+                  margin="normal"
+                  variant="outlined"
+                />
               </FormControl>
             </form>
           </DialogContent>
@@ -86,7 +103,7 @@ class LocationModal extends React.Component {
             <Button onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button onClick={this.handleClose}>
+            <Button onClick={this.submitForm}>
               Ok
             </Button>
           </DialogActions>

@@ -74,7 +74,7 @@ class ItemModal extends React.Component {
                   native
                   value={this.state.age}
                   onChange={this.handleChange('itemName')}
-                  input={<Input id="age-native-simple" />}
+                  input={<Input id="item-name-native-simple" />}
                 >
                   <option value="" />
                   <option value={10}>Ten</option>

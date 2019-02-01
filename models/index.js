@@ -1,5 +1,5 @@
 module.exports = {
     User: require("./user"),
-    Item: requiure("./item"),
+    Item: require("./item"),
     Storage: require("./storage")
   }
