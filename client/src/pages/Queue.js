@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ItemCard from '../components/ItemCard'
-import Modal from '../components/Modal'
+import ItemModal from '../components/ItemModal'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -46,7 +46,7 @@ class Queue extends Component {
                     </Grid>
                 </Grid>
 
-                <Modal />
+                <ItemModal />
             </div >
 
         )

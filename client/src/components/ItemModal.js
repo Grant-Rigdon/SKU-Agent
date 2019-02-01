@@ -35,7 +35,7 @@ const styles = theme => ({
 class ItemModal extends React.Component {
   state = {
     open: false,
-    age: '',
+    itemName: '',
   }
 
   handleChange = name => event => {
@@ -69,12 +69,12 @@ class ItemModal extends React.Component {
           <DialogContent>
             <form className={classes.container}>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+                <InputLabel htmlFor="item-name-native-simple">Item Name</InputLabel>
                 <Select
                   native
                   value={this.state.age}
-                  onChange={this.handleChange('age')}
-                  input={<Input id="age-native-simple" />}
+                  onChange={this.handleChange('itemName')}
+                  input={<Input id="item-name-native-simple" />}
                 >
                   <option value="" />
                   <option value={10}>Ten</option>
