@@ -7,6 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import StorageTable from './Table'
+import API from '../utils/API'
 
 const styles = theme => ({
   root: {
@@ -36,12 +37,23 @@ const styles = theme => ({
 class Accordion extends React.Component {
   state = {
     expanded: null,
+    storage: []
   }
 
   handleChange = panel => (event, expanded) => {
     this.setState({
       expanded: expanded ? panel : false,
     })
+  }
+  loadStorage = () => {
+    API.getStorage()
+      .then(res => {
+        this.setState({ storage: res.data })
+      })
+  }
+
+  componentDidMount() {
+    this.loadStorage()
   }
 
   render() {
@@ -50,15 +62,17 @@ class Accordion extends React.Component {
 
     return (
       <div className={classes.root}>
-        <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
+      {this.state.storage.map(storage => (
+        <ExpansionPanel expanded={expanded === storage.name} onChange={this.handleChange(storage.name)}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Location Name</Typography>
-            <Typography className={classes.secondaryHeading}>Type of Items Stored Here</Typography>
+            <Typography className={classes.heading}>{storage.name}</Typography>
+            <Typography className={classes.secondaryHeading}>Items Stored Here</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails >
-            <StorageTable />
+            <StorageTable items={storage.items}/>
           </ExpansionPanelDetails>
         </ExpansionPanel>
+      ))}
       </div>
     )
   }

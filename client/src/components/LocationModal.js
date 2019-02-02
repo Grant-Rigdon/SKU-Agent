@@ -49,12 +49,7 @@ class LocationModal extends React.Component {
     this.setState({ open: false })
   }
 
-  loadStorage = () => {
-    API.getStorage()
-      .then(res => {
-        this.setState({ storage: res.data })
-      })
-  }
+  
 
   onFormSubmit = event => {
     event.preventDefault()
@@ -64,9 +59,7 @@ class LocationModal extends React.Component {
     .then( () => this.handleClose())
   }
 
-  componentDidMount() {
-    this.loadStorage()
-  }
+
 
   render() {
     const { classes } = this.props
