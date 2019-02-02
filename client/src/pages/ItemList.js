@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import QueueItemCard from '../components/QueueItemCard'
-import AddItemFab from '../components/AddItemFab'
+import ItemCard from '../components/ItemCard'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -20,34 +19,32 @@ const styles = theme => ({
 })
 
 class Queue extends Component {
-    state = { items: [] }
-    
+    state={ items: [] }
+
     render() {
         const { classes } = this.props
         return (
             <div className={classes.root}>
                 <Grid container spacing={16}>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                 </Grid>
-
-                <AddItemFab />
             </div >
 
         )

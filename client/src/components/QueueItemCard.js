@@ -34,8 +34,16 @@ function Item(props) {
     <div>
       <Paper className={classes.root} elevation={1}>
         <Typography variant="h5" component="h3">
-          ItemName
+          This is a sheet of paper.
         </Typography>
+        <Typography component="p">
+          Paper can be used to build surface or other elements for your application.
+        </Typography>
+        <div className={classes.buttonContainer}>
+          <Badge className={classes.badge} badgeContent={4}>
+            <Button variant="contained" size="small" className={classes.button}>Button</Button>
+          </Badge>
+        </div>
       </Paper>
     </div>
   )
