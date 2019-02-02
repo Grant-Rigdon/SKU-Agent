@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import QueueItemCard from '../components/QueueItemCard'
-import AddItemFab from '../components/AddItemFab'
+import ItemCard from '../components/ItemCard'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import API from '../utils/API'
 
 const styles = theme => ({
     root: {
@@ -21,47 +19,32 @@ const styles = theme => ({
 })
 
 class Queue extends Component {
-    state = { items: [] }
-    
-    loadQueue = () => {
-        API.getQueue()
-            .then(res => {
-            this.setState({ items: res.data })
-            })
-    }
+    state={ items: [] }
 
-    componentDidMount() {
-        this.loadQueue()
-    }
-
-    
-    
     render() {
         const { classes } = this.props
         return (
             <div className={classes.root}>
                 <Grid container spacing={16}>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <ItemCard />
                     </Grid>
                 </Grid>
-
-                <AddItemFab />
             </div >
 
         )
@@ -70,5 +53,3 @@ class Queue extends Component {
 
 
 export default withStyles(styles)(Queue)
-
-
