@@ -26,6 +26,10 @@ const styles = theme => ({
         right: 0,
         margin: 'auto'
     },
+    loginButton: {
+        float: 'right',
+        marginTop: 15
+    }
 })
 
 class Register extends React.Component {
@@ -92,7 +96,7 @@ class Register extends React.Component {
                     <Button variant="contained" color="primary" className={classes.button}>
                         Register
                 </Button>
-
+                <a href="/" className={classes.loginButton}>Login</a>
                 </Paper>
             </div>
         )

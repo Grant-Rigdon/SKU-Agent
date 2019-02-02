@@ -8,11 +8,10 @@ router.route('/')
             .find(req.query)
             .then(storage => res.json(storage))
     })
-    .post((req, res) => {
-        console.log(req.body)
+    .post((req, res) => {        
         db.Storage
             .create(req.body)
             .then(location => res.json(location))
-    }) 
+    })
 
-module.exports = router;
+module.exports = router

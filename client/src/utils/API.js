@@ -6,8 +6,19 @@ export default {
         return axios.get("/api/home/")
     },
 
-    addStorage: function (name) {
-        console.log(name.name)
-        return axios.post("/api/home/",name)
+    addStorage: function (location) {        
+        return axios.post("/api/home/", location)
+    },
+
+    getQueue: function() {
+        return axios.get("/api/queue")
+    },
+
+    addQueue: function(item) {
+        return axios.post("/api/queue", item)
+    },
+
+    removeQueue: function(){
+        return axios.delete("/api/queue/:id")
     }
 }
