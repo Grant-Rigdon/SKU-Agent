@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import NoMatch from './pages/NoMatch'
 import Home from './pages/Home'
 import Queue from './pages/Queue'
+import ItemList from './pages/ItemList'
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route exact path="/Login" component={Login} />
                     <Route exact path="/Register" component={Register} />
                     <Route exact path="/Home" component={Home} />
+                    <Route exact path="/ItemList" component={ItemList} />
                     <Route exact path="/Queue" component={Queue} />
                     <Route component={NoMatch} />
                 </Switch>
