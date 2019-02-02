@@ -29,6 +29,10 @@ const styles = theme => ({
     button: {
         marginTop: theme.spacing.unit * 1.5,
         color: theme.palette.secondary
+    },
+    registerButton: {
+        float: 'right',
+        marginTop: 25
     }
 })
 
@@ -85,6 +89,7 @@ class Login extends React.Component {
                     <Button variant="contained" className={classes.button}>
                         Login
                     </Button>
+                    <a href='/register' className={classes.registerButton}>Register</a>
                 </Paper>
             </div>
         )
