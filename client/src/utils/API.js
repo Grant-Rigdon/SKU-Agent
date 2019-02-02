@@ -8,6 +8,6 @@ export default {
 
     addStorage: function (name) {
         console.log(name.name)
-        return axios.post("/api/home/")
+        return axios.post("/api/home/",name)
     }
 }

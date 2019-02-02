@@ -11,7 +11,7 @@ router.route('/')
     .post((req, res) => {
         console.log(req.body)
         db.Storage
-            .create(req.body.name)
+            .create(req.body)
             .then(location => res.json(location))
     }) 
 
