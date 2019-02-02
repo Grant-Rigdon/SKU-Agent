@@ -4,7 +4,8 @@ const Storage = new mongoose.Schema({
     name: {type: String, required: true},
     items: [{
         type: Schema.Types.ObjectId,
-        ref: "Item"
+        ref: "Item",
+        qty: {type:Number, default: 0}
     }]
     
 })
