@@ -64,10 +64,9 @@ class Accordion extends React.Component {
     return (
       <div className={classes.root}>
       {this.state.storage.map(storage => (
-        <ExpansionPanel expanded={expanded === storage.name} onChange={this.handleChange(storage.name)}>
+        <ExpansionPanel key={storage.name} expanded={expanded === storage.name} onChange={this.handleChange(storage.name)}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>{storage.name}</Typography>
-            <Typography className={classes.secondaryHeading}>Items Stored Here</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails >
             <StorageTable items={storage.items}/>

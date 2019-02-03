@@ -26,7 +26,7 @@ const styles = theme => ({
 })
 
 class Home extends Component {
-    state = {}
+    state = { }
 
     render() {
         const { classes } = this.props

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import classNames from 'classnames'
@@ -89,7 +90,9 @@ class Login extends React.Component {
                     <Button variant="contained" className={classes.button}>
                         Login
                     </Button>
-                    <a href='/register' className={classes.registerButton}>Register</a>
+                    <Link to='/register' className={classes.registerButton}>
+                    Register
+                    </Link>
                 </Paper>
             </div>
         )
