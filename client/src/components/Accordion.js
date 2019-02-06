@@ -52,7 +52,7 @@ class Accordion extends React.Component {
   }
   loadStorage = () => {
     API.getStorage()
-      .then(res => {
+      .then(res => {        
         this.setState({ storage: res.data })
       })
   }
