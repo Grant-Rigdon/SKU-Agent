@@ -7,8 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import FormControl from '@material-ui/core/FormControl'
-import Fab from '@material-ui/core/Fab'
-import AddIcon from '@material-ui/icons/Add'
+import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
 import API from '../utils/API'
 
@@ -22,19 +21,15 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
-    backgroundColor: theme.palette.secondary.main
-  },
+  
 })
 
-class LocationModal extends React.Component {
+class ItemModal extends React.Component {
   state = {
     open: false,
-    name: '',
-    storage: []
+    item: '',
+    quantity: '',
+    items:[]
   }
 
   handleChange = name => event => {
@@ -49,13 +44,24 @@ class LocationModal extends React.Component {
     this.setState({ open: false })
   }
 
-  
+  loadItems = () => {
+    API.getItem()
+      .then(res => {
+        this.setState({ items: res.data })        
+      })
+    
+  }
+
+  componentDidMount() {
+    this.loadItems()
+  }
 
   onFormSubmit = event => {
+    console.log(this.state.item)
     event.preventDefault()
-    API.addStorage({
-      name: this.state.name
-    })
+    API.updateStorage({
+      item:  this.state.item,      
+      location: this.props.id})
     .then( () => {
       this.handleClose()
       
@@ -66,12 +72,12 @@ class LocationModal extends React.Component {
 
   render() {
     const { classes } = this.props
-
+    
     return (
       <div>
-        <Fab aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
-          <AddIcon />
-        </Fab>
+        <Button className={classes.newSku} onClick={this.handleClickOpen} color="primary">
+            Add Item
+        </Button>
 
         <Dialog
           disableBackdropClick
@@ -79,16 +85,31 @@ class LocationModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <DialogTitle>Fill the form</DialogTitle>
+          <DialogTitle>Add Item to Storage Location</DialogTitle>
           <DialogContent>
             <form className={classes.container} onSubmit={this.onFormSubmit}>
               <FormControl className={classes.formControl}>
                 <TextField
-                  id="outlined-name"
-                  label="Location Name"
+                    select
+                    className={(classes.margin, classes.textField)}
+                    variant="outlined"
+                    label="Select Item"
+                    value={this.state.item}
+                    
+                    onChange={this.handleChange('item')}                    
+                    >
+                    {this.state.items.map(option => (
+                        <MenuItem key={option._id} value={option._id}>
+                        {option.name}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                  id="outlined-quantitiy"
+                  label="Item Quantity"
                   className={classes.textField}
-                  value={this.state.name}
-                  onChange={this.handleChange('name')}
+                  value={this.state.quantity}
+                  onChange={this.handleChange('quantity')}
                   margin="normal"
                   variant="outlined"
                 />
@@ -99,7 +120,7 @@ class LocationModal extends React.Component {
             <Button onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button onClick={this.submitForm}>
+            <Button onClick={this.onFormSubmit}>
               Ok
             </Button>
           </DialogActions>
@@ -109,9 +130,9 @@ class LocationModal extends React.Component {
   }
 }
 
-LocationModal.propTypes = {
+ItemModal.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(LocationModal
+export default withStyles(styles)(ItemModal
 )

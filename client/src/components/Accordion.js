@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import StorageTable from './Table'
 import Button from '@material-ui/core/Button'
 import API from '../utils/API'
+import ItemModal from './ItemModal';
 
 const styles = theme => ({
   root: {
@@ -41,6 +42,10 @@ class Accordion extends React.Component {
     storage: []
   }
 
+  handleClick = () => {
+
+  }
+
   handleChange = panel => (event, expanded) => {
     this.setState({
       expanded: expanded ? panel : false,
@@ -53,14 +58,14 @@ class Accordion extends React.Component {
       })
   }
 
-  componentDidMount() {
-    this.loadStorage()
-  }
+  
+    
+ 
 
   render() {
     const { classes } = this.props
     const { expanded } = this.state
-
+    this.loadStorage()
     return (
       <div className={classes.root}>
       {this.state.storage.map(storage => (
@@ -72,9 +77,7 @@ class Accordion extends React.Component {
           <ExpansionPanelDetails >
             <StorageTable items={storage.items}/>
           </ExpansionPanelDetails>
-          <Button onClick={this.handleClose} color="primary">
-              Ok
-            </Button>
+          <ItemModal id={storage._id}/>
         </ExpansionPanel>
       ))}
       </div>
