@@ -4,7 +4,7 @@
   "private": true,
   "description": "",
   "homepage": "./",
-  "main": "main.js",
+  "main": "server.js",
   "dependencies": {
     "axios": "^0.18.0",
     "electron": "^4.0.4",

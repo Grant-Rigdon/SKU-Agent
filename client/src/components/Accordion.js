@@ -7,7 +7,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import StorageTable from './Table'
-import Button from '@material-ui/core/Button'
 import API from '../utils/API'
 import ItemModal from './ItemModal';
 

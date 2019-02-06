@@ -16,7 +16,7 @@ router.route('/')
     .patch((req,res) => {
         console.log(req.body)
         db.Storage
-            .update({_id: req.body.location}, { $push: { items: req.body.item }})
+            .update({_id: req.body.location}, { $push: { items: req.body.item }},{ new: true })
             .then(storage => res.json(storage))
     })
 

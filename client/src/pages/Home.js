@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import Accordian from '../components/Accordion'
 import { withStyles } from '@material-ui/core/styles'
 import LocationModal from '../components/LocationModal'
-import Button from '@material-ui/core/Button'
-import { relative } from 'path';
 import SkuModal from '../components/SkuModal';
 
 const styles = theme => ({
