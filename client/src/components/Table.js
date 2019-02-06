@@ -149,7 +149,7 @@ class StorageTable extends React.Component {
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row}
                   </TableCell>
                   <TableCell align="right">{row.calories}</TableCell>
                   <TableCell align="right">{row.fat}</TableCell>

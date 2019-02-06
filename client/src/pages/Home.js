@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import LocationModal from '../components/LocationModal'
 import Button from '@material-ui/core/Button'
 import { relative } from 'path';
+import SkuModal from '../components/SkuModal';
 
 const styles = theme => ({
     root: {
@@ -17,25 +18,19 @@ const styles = theme => ({
         right: 0,
         margin: 'auto'
     },
-    newSku: {
-        position: 'fixed',
-        bottom: theme.spacing.unit * 2,
-        right: theme.spacing.unit * 10,
-        backgroundColor: theme.palette.secondary.main
-    }
+    
 })
 
 class Home extends Component {
     state = { }
 
+    
     render() {
         const { classes } = this.props
         return (
             <div className={classes.root}>
                 <Accordian />
-                <Button className={classes.newSku} color="primary">
-                    Add SKU
-                </Button>
+                <SkuModal />
                 <LocationModal />
             </div>
         )
