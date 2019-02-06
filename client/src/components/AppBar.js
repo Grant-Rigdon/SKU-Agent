@@ -1,5 +1,6 @@
 import React from "react"
 import AppBar from '@material-ui/core/AppBar'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Menu from '../components/Menu'
@@ -34,9 +35,12 @@ function Nav(props) {
                     <Typography variant="h6" color="inherit" className={classes.appName}>
                         SKU Agent
                     </Typography>
-                    <Badge color="primary" badgeContent={4} className={classes.queueLink}>
-                        <Button href="/queue">Queue</Button>
-                    </Badge>
+                    <Link to="/queue" className={classes.queueLink}>
+                        <Badge color="primary" badgeContent={4} >
+                            <Button>Queue</Button>
+                        </Badge>
+                    </Link>
+
                 </Toolbar>
             </AppBar>
         </div>
