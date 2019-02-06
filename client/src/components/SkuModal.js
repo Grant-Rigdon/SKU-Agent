@@ -22,19 +22,19 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
-  fab: {
+  newSku: {
     position: 'fixed',
     bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 10,
     backgroundColor: theme.palette.secondary.main
-  },
+}
 })
 
-class LocationModal extends React.Component {
+class SkuModal extends React.Component {
   state = {
     open: false,
     name: '',
-    storage: []
+    sku: '',
   }
 
   handleChange = name => event => {
@@ -52,9 +52,11 @@ class LocationModal extends React.Component {
   
 
   onFormSubmit = event => {
+    console.log('clicked')
     event.preventDefault()
-    API.addStorage({
-      name: this.state.name
+    API.addItem({
+      name: this.state.name,
+      _id: this.state.sku
     })
     .then( () => {
       this.handleClose()
@@ -69,9 +71,9 @@ class LocationModal extends React.Component {
 
     return (
       <div>
-        <Fab aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
-          <AddIcon />
-        </Fab>
+        <Button className={classes.newSku} onClick={this.handleClickOpen} color="primary">
+            Add SKU
+        </Button>
 
         <Dialog
           disableBackdropClick
@@ -79,13 +81,22 @@ class LocationModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <DialogTitle>Fill the form</DialogTitle>
+          <DialogTitle>Add new SKU</DialogTitle>
           <DialogContent>
             <form className={classes.container} onSubmit={this.onFormSubmit}>
               <FormControl className={classes.formControl}>
                 <TextField
+                  id="outlined-sku"
+                  label="Sku SKU"
+                  className={classes.textField}
+                  value={this.state.sku}
+                  onChange={this.handleChange('sku')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <TextField
                   id="outlined-name"
-                  label="Location Name"
+                  label="Sku Name"
                   className={classes.textField}
                   value={this.state.name}
                   onChange={this.handleChange('name')}
@@ -99,7 +110,7 @@ class LocationModal extends React.Component {
             <Button onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button onClick={this.submitForm}>
+            <Button onClick={this.onFormSubmit}>
               Ok
             </Button>
           </DialogActions>
@@ -109,9 +120,9 @@ class LocationModal extends React.Component {
   }
 }
 
-LocationModal.propTypes = {
+SkuModal.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(LocationModal
+export default withStyles(styles)(SkuModal
 )

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ItemCard from '../components/ItemCard'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
+import API from '../utils/API'
 
 const styles = theme => ({
     root: {
@@ -18,32 +19,49 @@ const styles = theme => ({
     }
 })
 
-class Queue extends Component {
-    state={ items: [] }
 
+
+class Queue extends Component {
+    state={ 
+        items: [],
+        quantity:""
+     }
+
+    loadItems = () => {
+        API.getItem()
+          .then(res => {
+            this.setState({ items: res.data })        
+          })
+        
+      }
+    
+    componentDidMount() {
+    this.loadItems()
+    }
+    onClick = item => { 
+        console.log(item)
+           
+        API.addQueue({
+            _id: item._id,
+            name: item.name,
+            // location: item.storage,
+            quantity: this.state.quantity
+    })
+    .then( () => {
+        this.handleClose()
+        
+    })
+    }
     render() {
         const { classes } = this.props
         return (
             <div className={classes.root}>
                 <Grid container spacing={16}>
-                    <Grid item xs={"auto"}>
-                        <ItemCard />
+                {this.state.items.map(item => (
+                    <Grid item xs={"auto"} onClick={()=>this.onClick(item)}>
+                        <ItemCard name= {item.name}/>
                     </Grid>
-                    <Grid item xs={"auto"}>
-                        <ItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <ItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <ItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <ItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <ItemCard />
-                    </Grid>
+                ))}    
                 </Grid>
             </div >
 

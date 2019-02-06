@@ -34,7 +34,7 @@ function Item(props) {
     <div>
       <Paper className={classes.root} elevation={1}>
         <Typography variant="h5" component="h3">
-          ItemName
+          {props.name}
         </Typography>
       </Paper>
     </div>

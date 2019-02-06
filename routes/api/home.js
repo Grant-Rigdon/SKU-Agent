@@ -11,7 +11,13 @@ router.route('/')
     .post((req, res) => {        
         db.Storage
             .create(req.body)
-            .then(location => res.json(location))
+            .then(storage => res.json(storage))
+    })
+    .patch((req,res) => {
+        console.log(req.body)
+        db.Storage
+            .update({_id: req.body.location}, { $push: { items: req.body.item }})
+            .then(storage => res.json(storage))
     })
 
 module.exports = router

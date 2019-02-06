@@ -20,5 +20,16 @@ export default {
 
     removeQueue: function(){
         return axios.delete("/api/queue/:id")
+    },
+
+    getItem: function() {
+        return axios.get("/api/item")
+    },
+    addItem: function(item) {
+        return axios.post("/api/item", item)
+    },
+    updateStorage: function(data) {
+        console.log(data)
+        return axios.patch("/api/home/", data)
     }
 }

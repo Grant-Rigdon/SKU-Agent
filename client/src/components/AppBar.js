@@ -10,7 +10,8 @@ import Button from '@material-ui/core/Button'
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.background.default,
+        
     },
     appName: {
         background: theme.palette.primary,
