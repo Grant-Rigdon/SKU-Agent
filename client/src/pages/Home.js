@@ -20,7 +20,7 @@ const styles = theme => ({
 })
 
 class Home extends Component {
-    state = {}
+    state = { }
 
     
     render() {

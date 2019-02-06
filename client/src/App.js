@@ -7,6 +7,7 @@ import NoMatch from './pages/NoMatch'
 import Home from './pages/Home'
 import Queue from './pages/Queue'
 import ItemList from './pages/ItemList'
+import NewSku from './pages/NewSku'
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Route exact path="/Register" component={Register} />
                     <Route exact path="/Home" component={Home} />
                     <Route exact path="/ItemList" component={ItemList} />
+                    <Route exact path="/NewSKU" component={NewSku} />
                     <Route exact path="/Queue" component={Queue} />
                     <Route component={NoMatch} />
                 </Switch>
