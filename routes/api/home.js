@@ -16,9 +16,11 @@ router.route('/')
     })
     .patch((req,res) => {
         console.log(req.body)
-        db.Storage
-            .updateOne({_id: req.body.location}, { $push: { items: {item: req.body.item, quantity: req.body.quantity}}})                      
-            .then(storage => res.json(storage))        
+        const storage = db.Storage.updateOne({_id: req.body.location}, { $push: { items: {item: req.body.item, quantity: req.body.quantity}}})
+        const item = db.Item.updateOne({_id: req.body.item}, { $push: { location: req.body.location}})                      
+        storage.then(storage => res.json(storage)) 
+        item.then(item => res.json(item)) 
+               
             
     })
 
