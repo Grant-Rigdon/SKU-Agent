@@ -4,7 +4,6 @@ const db = require('../../models')
 
 router.route('/')
     .get((req, res) => {
-        console.log(req)
         db.Storage
             .find(req.query)
             .then(storage => res.json(storage))
