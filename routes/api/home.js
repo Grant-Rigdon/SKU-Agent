@@ -3,9 +3,10 @@ const db = require('../../models')
 
 
 router.route('/')
-    .get((req, res) => {
-        db.Storage
-            .find(req.query)
+    .get((req, res) => {        
+        db.Storage            
+            .find({})
+            .populate("items.item")
             .then(storage => res.json(storage))
     })
     .post((req, res) => {        
@@ -15,9 +16,12 @@ router.route('/')
     })
     .patch((req,res) => {
         console.log(req.body)
-        db.Storage
-            .update({_id: req.body.location}, { $push: { items: req.body.item }})
-            .then(storage => res.json(storage))
+        const storage = db.Storage.updateOne({_id: req.body.location}, { $push: { items: {item: req.body.item, quantity: req.body.quantity}}})
+        const item = db.Item.updateOne({_id: req.body.item}, { $push: { location: req.body.location}})                      
+        storage.then(storage => res.json(storage)) 
+        item.then(item => res.json(item)) 
+               
+            
     })
 
 module.exports = router

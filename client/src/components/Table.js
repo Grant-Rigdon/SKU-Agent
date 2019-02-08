@@ -113,6 +113,7 @@ const styles = theme => ({
 })
 
 class StorageTable extends React.Component {
+  
   state = {
     rows: [
       this.props.items
@@ -120,6 +121,8 @@ class StorageTable extends React.Component {
     page: 0,
     rowsPerPage: 5,
   }
+
+ 
 
   handleChangePage = (event, page) => {
     this.setState({ page })
@@ -133,7 +136,7 @@ class StorageTable extends React.Component {
     const { classes } = this.props
     const { rows, rowsPerPage, page } = this.state
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
-
+    
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
@@ -146,13 +149,13 @@ class StorageTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                <TableRow key={row.id}>
+              {this.props.items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
+                <TableRow key={row.item._id}>
                   <TableCell component="th" scope="row">
-                    {row}
+                    {row.item.name}                    
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">{row.item._id}</TableCell>
+                  <TableCell align="right">{row.quantity}</TableCell>
                 </TableRow>
               ))}
               {emptyRows > 0 && (

@@ -5,6 +5,10 @@ router.route('/')
     .get((req, res) => {
         db.QueueItem
             .find(req.query)
+            .populate({
+                path: 'location',
+                model: 'Storage'
+            })
             .then(queueItem => res.json(queueItem))
     })
     .post((req, res) => {

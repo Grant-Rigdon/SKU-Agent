@@ -61,7 +61,8 @@ class ItemModal extends React.Component {
     event.preventDefault()
     API.updateStorage({
       item:  this.state.item,      
-      location: this.props.id})
+      location: this.props.id,
+      quantity: this.state.quantity})
     .then( () => {
       this.handleClose()
       
