@@ -6,6 +6,7 @@ router.route('/')
     .get((req, res) => {
         db.Item
             .find(req.query)
+            .populate("storages")
             .then(item => res.json(item))
     })
     .post((req, res) => {        

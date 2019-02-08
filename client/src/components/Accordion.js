@@ -65,6 +65,7 @@ class Accordion extends React.Component {
     const { classes } = this.props
     const { expanded } = this.state
     this.loadStorage()
+    
     return (
       <div className={classes.root}>
       {this.state.storage.map(storage => (

@@ -44,11 +44,10 @@ class Queue extends Component {
         API.addQueue({
             _id: item._id,
             name: item.name,
-            // location: item.storage,
-            quantity: this.state.quantity
+            location: item.location,
+            // quantity: this.state.quantity
     })
-    .then( () => {
-        this.handleClose()
+    .then( () => {        
         
     })
     }

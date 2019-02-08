@@ -21,7 +21,9 @@ const styles = theme => ({
 })
 
 class Queue extends Component {
-    state = { items: [] }
+    state = { 
+        items: []
+     }
     
     loadQueue = () => {
         API.getQueue()
@@ -30,35 +32,20 @@ class Queue extends Component {
             })
     }
 
-    componentDidMount() {
-        this.loadQueue()
-    }
-
     
     
     render() {
-        const { classes } = this.props
+        const { classes } = this.props 
+        this.loadQueue()   
+        console.log(this.state.items)    
         return (
             <div className={classes.root}>
                 <Grid container spacing={16}>
+                    {this.state.items.map(item => (
                     <Grid item xs={"auto"}>
-                        <QueueItemCard />
+                        <QueueItemCard item={item}/>
                     </Grid>
-                    <Grid item xs={"auto"}>
-                        <QueueItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <QueueItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <QueueItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <QueueItemCard />
-                    </Grid>
-                    <Grid item xs={"auto"}>
-                        <QueueItemCard />
-                    </Grid>
+                    ))}
                 </Grid>
 
                 <AddItemFab />
