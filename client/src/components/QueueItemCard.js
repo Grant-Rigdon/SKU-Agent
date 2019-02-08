@@ -29,21 +29,23 @@ const styles = theme => ({
 
 function Item(props) {
   const { classes } = props
-  
+  // console.log(props.item)
   return (
     <div>
       <Paper className={classes.root} elevation={1}>
         <Typography variant="h5" component="h3">
-          {props.item}
+          {props.item.name}
         </Typography>
         <Typography component="p">
-          Paper can be used to build surface or other elements for your application.
+          Quantity Needed: {props.item.quantity}
         </Typography>
-        <div className={classes.buttonContainer}>
-          <Badge className={classes.badge} badgeContent={4}>
-            <Button variant="contained" size="small" className={classes.button}>Button</Button>
+        {props.item.location.map(location => (
+        <div className={classes.buttonContainer} key={location._id}>
+          <Badge className={classes.badge} badgeContent={location.items.map(item => (item.item === props.item._id ? item.quantity : ""))}>
+            <Button variant="contained" size="small" className={classes.button}>{location.name}</Button>
           </Badge>
         </div>
+        ))}
       </Paper>
     </div>
   )

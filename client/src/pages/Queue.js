@@ -22,13 +22,13 @@ const styles = theme => ({
 
 class Queue extends Component {
     state = { 
-        items: []
+        queue: []
      }
     
     loadQueue = () => {
         API.getQueue()
             .then(res => {
-            this.setState({ items: res.data })
+            this.setState({ queue: res.data })
             })
     }
 
@@ -37,13 +37,13 @@ class Queue extends Component {
     render() {
         const { classes } = this.props 
         this.loadQueue()   
-        console.log(this.state.items)    
+            
         return (
             <div className={classes.root}>
                 <Grid container spacing={16}>
-                    {this.state.items.map(item => (
+                    {this.state.queue.map(queueItem => (
                     <Grid item xs={"auto"}>
-                        <QueueItemCard item={item}/>
+                        <QueueItemCard item={queueItem}/>
                     </Grid>
                     ))}
                 </Grid>
