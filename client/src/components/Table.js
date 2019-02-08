@@ -150,12 +150,12 @@ class StorageTable extends React.Component {
             </TableHead>
             <TableBody>
               {this.props.items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                <TableRow key={row._id}>
+                <TableRow key={row.item._id}>
                   <TableCell component="th" scope="row">
-                    {row.name}                    
+                    {row.item.name}                    
                   </TableCell>
-                  <TableCell align="right">{row._id}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
+                  <TableCell align="right">{row.item._id}</TableCell>
+                  <TableCell align="right">{row.quantity}</TableCell>
                 </TableRow>
               ))}
               {emptyRows > 0 && (

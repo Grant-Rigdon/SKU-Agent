@@ -3,10 +3,12 @@ const Schema = mongoose.Schema
 
 const Storage = new Schema({
     name: { type: String, required: true },
-    items: [{
+    items: [
+        {item:{
         type: Schema.Types.String,
         ref: "Item",
-        },{quantity: Number}]
+        },
+        quantity: Number}]
 
 })
 
