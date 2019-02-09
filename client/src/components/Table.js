@@ -14,6 +14,8 @@ import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
+import CloseIcon from '@material-ui/icons/Close'
+import API from '../utils/API'
 
 const actionsStyles = theme => ({
   root: {
@@ -131,6 +133,12 @@ class StorageTable extends React.Component {
   handleChangeRowsPerPage = event => {
     this.setState({ rowsPerPage: event.target.value })
   }
+  handleDelete = (id) => {      
+    API.removeItem({
+      id: id,
+      route: 'home'
+    })
+  }
 
   render() {
     const { classes } = this.props
@@ -156,6 +164,15 @@ class StorageTable extends React.Component {
                   </TableCell>
                   <TableCell align="right">{row.item._id}</TableCell>
                   <TableCell align="right">{row.quantity}</TableCell>
+                  <IconButton
+                      key="close"
+                      aria-label="Close"
+                      color="inherit"
+                      className={classes.close}
+                      onClick={()=>this.handleDelete(row.item._id)}
+                    >
+                      <CloseIcon />
+                  </IconButton>
                 </TableRow>
               ))}
               {emptyRows > 0 && (

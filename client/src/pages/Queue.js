@@ -42,7 +42,7 @@ class Queue extends Component {
             <div className={classes.root}>
                 <Grid container spacing={16}>
                     {this.state.queue.map(queueItem => (
-                    <Grid item xs={"auto"}>
+                    <Grid item xs={"auto"} key={queueItem._id}>
                         <QueueItemCard item={queueItem}/>
                     </Grid>
                     ))}

@@ -18,8 +18,8 @@ export default {
         return axios.post("/api/queue", item)
     },
 
-    removeQueue: function(){
-        return axios.delete("/api/queue/:id")
+    removeItem: function(item){                
+        return axios.delete(`/api/${item.route}/${item.id}`)
     },
 
     getItem: function() {
@@ -28,8 +28,7 @@ export default {
     addItem: function(item) {
         return axios.post("/api/item", item)
     },
-    updateStorage: function(data) {
-        console.log(data)
+    updateStorage: function(data) {        
         return axios.patch("/api/home/", data)
     }
 }

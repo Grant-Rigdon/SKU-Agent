@@ -11,23 +11,16 @@ router.route('/')
             })
             .then(queueItem => res.json(queueItem))
     })
-    .post((req, res) => {
-        console.log(req.body)
+    .post((req, res) => {        
         db.QueueItem
             .create(req.body)
             .then(queueItem => res.json(queueItem))
-    }) 
-    .delete((req, res) => {
+    })
+router.route('/:id') 
+    .delete((req, res) => {                
         db.QueueItem
         .deleteOne({_id: req.params.id})
-        .exec((err, doc) => {
-            if (err) {
-              console.log(err)
-            }
-            else {
-              res.send(doc)
-            }
-        })
+        .then(queueItem => res.json(queueItem))
     })
 
 module.exports = router;
