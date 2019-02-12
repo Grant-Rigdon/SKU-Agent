@@ -21,5 +21,12 @@ router.route('/')
         storage.then(storage => res.json(storage)) 
         item.then(item => res.json(item))            
     })
+router.route('/:id')    
+    .delete((req, res) => { 
+        console.log(req.params.id)               
+        db.Storage
+        .deleteOne({items:{item: req.params.id}})
+        .then(storage => res.json(storage))
+    })
 
 module.exports = router
