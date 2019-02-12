@@ -48,8 +48,8 @@ class Register extends React.Component {
                     id="outlined-name"
                     label="SKU Number"
                     className={classes.textField}
-                    value={this.state.name}
-                    onChange={this.handleChange('name')}
+                    value={this.state.sku}
+                    onChange={this.handleChange('sku')}
                     margin="normal"
                     variant="outlined"
                 />

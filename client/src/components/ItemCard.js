@@ -1,43 +1,44 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
 
 
 
 const styles = theme => ({
   root: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    paddingLeft: theme.spacing.unit * 2,
-    minWidth: 160,
-    maxWidth: 320,
-    height: 'auto'
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
-  buttonContainer: {
-    marginTop: theme.spacing.unit * 2
+  chip: {
+    margin: theme.spacing.unit,
   },
-  button: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  badge: {
-    backgroundColor: theme.palette.secondary.main
+});
+
+
+class Item extends Component {
+
+
+  handleClick = () => {
+    console.log('clicked')
   }
-})
 
-function Item(props) {
-  const { classes } = props
+  render() {
+    const { classes } = this.props
+    return (
+      <div className={classes.root}>
+        <Chip
+          avatar={<Avatar>MB</Avatar>}
+          label={this.props.name}
+          onClick={this.handleClick}
+          className={classes.chip}
+        />
+      </div>
+    )
+  }
 
-  return (
-    <div>
-      <Paper className={classes.root} elevation={1}>
-        <Typography variant="h5" component="h3">
-          {props.name}
-        </Typography>
-      </Paper>
-    </div>
-  )
 }
 
 Item.propTypes = {
