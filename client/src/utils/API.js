@@ -18,8 +18,11 @@ export default {
         return axios.post("/api/queue", item)
     },
 
+    removeQueue: function(item){                
+        return axios.delete(`/api/${item.route}/${item.id}/`)
+    },
     removeItem: function(item){                
-        return axios.delete(`/api/${item.route}/${item.id}`)
+        return axios.patch(`/api/${item.route}/${item.location}`, item)
     },
 
     getItem: function() {

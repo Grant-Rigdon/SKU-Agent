@@ -75,7 +75,7 @@ class Accordion extends React.Component {
             <Typography className={classes.heading}>{storage.name}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails >
-            <StorageTable items={storage.items}/>
+            <StorageTable items={storage.items} location={storage._id}/>
           </ExpansionPanelDetails>
           <ItemModal id={storage._id}/>
         </ExpansionPanel>

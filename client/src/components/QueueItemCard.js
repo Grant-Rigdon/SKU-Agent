@@ -36,10 +36,18 @@ class QueueItemCard extends Component {
    }
   
   handleDelete = (id) => {    
-    API.removeItem({
+    API.removeQueue({
       id: id,
       route: 'queue'
     })
+  }
+
+  onClick = (current,needed) => {
+    let currentNum = current
+    let neededNum = needed
+
+    console.log(currentNum+" "+neededNum)
+
   }
 
   render() {
@@ -65,8 +73,8 @@ class QueueItemCard extends Component {
           </Typography>
           <div className={classes.buttonContainer} >
           {this.props.item.location.map(location => (
-            <Badge className={classes.badge} key={location._id} badgeContent={location.items.map(item => (item.item === this.props.item._id ? item.quantity : ""))}>
-              <Button variant="contained" size="small" className={classes.button}>{location.name}</Button>
+            <Badge className={classes.badge} key={location._id} badgeContent={location.items.filter(item => (item.item === this.props.item._id ? item.quantity : 0))}>
+              <Button variant="contained" size="small" className={classes.button} onClick={()=>this.onClick(location.items.filter(item => (item.item === this.props.item._id ? item.quantity : 0)),this.props.item.quantity)}>{location.name}</Button>
             </Badge>
           ))}
           </div>

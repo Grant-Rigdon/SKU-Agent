@@ -16,7 +16,7 @@ router.route('/')
             .create(req.body)
             .then(queueItem => res.json(queueItem))
     })
-router.route('/:id') 
+router.route('/:id/') 
     .delete((req, res) => {                
         db.QueueItem
         .deleteOne({_id: req.params.id})
