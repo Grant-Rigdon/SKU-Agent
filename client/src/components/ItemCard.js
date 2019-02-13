@@ -27,6 +27,7 @@ const styles = theme => ({
   }
 })
 
+<<<<<<< HEAD
 function Item(props) {
   const { classes } = props
 
@@ -40,6 +41,22 @@ function Item(props) {
       </Paper>
     </div>
   )
+=======
+
+  function Item(props) {
+    const { classes } = props
+  
+    return (
+      <div>
+        <Paper className={classes.root} elevation={1}>
+          <Typography variant="h5" component="h3">
+            {props.name}
+          </Typography>
+        </Paper>
+      </div>
+    )
+
+>>>>>>> f530edb029e1becb0c43392ca2ba6dfe11f855c5
 }
 
 Item.propTypes = {
