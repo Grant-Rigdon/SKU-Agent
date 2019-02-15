@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import ItemListModal from './ItemListModal';
 
 
 
@@ -26,20 +27,19 @@ const styles = theme => ({
   }
 })
 
+function Item(props) {
+  const { classes } = props
 
-  function Item(props) {
-    const { classes } = props
-  
-    return (
-      <div>
-        <Paper className={classes.root} elevation={1}>
-          <Typography variant="h5" component="h3">
-            {props.name}
-          </Typography>
-        </Paper>
-      </div>
-    )
-
+  return (
+    <div>
+      <Paper className={classes.root} elevation={1}>
+        <Typography variant="h5" component="h3">
+          {props.item.name}
+        </Typography>
+        <ItemListModal item={props.item}/>
+      </Paper>
+    </div>
+  )
 }
 
 Item.propTypes = {

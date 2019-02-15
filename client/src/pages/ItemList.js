@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import API from '../utils/API'
 
+
 const styles = theme => ({
     root: {
         ...theme.mixins.gutters(),
@@ -34,31 +35,23 @@ class Queue extends Component {
           })
         
       }
+      handleChange = prop => event => {
+        this.setState({ [prop]: event.target.value });
+      };
     
     componentDidMount() {
     this.loadItems()
     }
-    onClick = item => { 
-        console.log(item)
-           
-        API.addQueue({
-            _id: item._id,
-            name: item.name,
-            location: item.location,
-            // quantity: this.state.quantity
-    })
-    .then( () => {        
-        
-    })
-    }
+    
     render() {
         const { classes } = this.props
         return (
             <div className={classes.root}>
                 <Grid container spacing={16}>
                 {this.state.items.map(item => (
-                    <Grid item xs={"auto"} onClick={()=>this.onClick(item)}>
-                        <ItemCard name= {item.name}/>
+                    <Grid item xs={"auto"} >
+                        <ItemCard item= {item}/>       
+                        
                     </Grid>
                 ))}    
                 </Grid>

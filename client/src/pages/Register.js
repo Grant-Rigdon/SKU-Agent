@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
+import API from '../utils/API'
 
 
 const styles = theme => ({
@@ -34,6 +35,7 @@ const styles = theme => ({
 
 class Register extends React.Component {
     state = {
+        name: '',
         password: '',
         showPassword: false,
     }
@@ -46,10 +48,18 @@ class Register extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }))
     }
 
+    onFormSubmit = () => {        
+       API.signup({
+           email: this.state.name,
+           password: this.state.password,
+           isManager: true
+       }) 
+    }
+
     render() {
         const { classes } = this.props
         return (
-            <div>
+            <form className={classes.container} onSubmit={this.onFormSubmit}>
                 <Paper className={classes.root} elevation={1}>
                     <TextField
                         id="outlined-name"
@@ -83,22 +93,13 @@ class Register extends React.Component {
                         }}
                     />
                     <br />
-                    <TextField
-                        id="outlined-name"
-                        label="Company"
-                        className={classes.textField}
-                        value={this.state.name}
-                        onChange={this.handleChange('name')}
-                        margin="normal"
-                        variant="outlined"
-                    />
                     <br />
-                    <Button variant="contained" color="primary" className={classes.button}>
+                    <Button variant="contained" color="primary" className={classes.button} onClick={this.onFormSubmit}>
                         Register
                 </Button>
                 <a href="/" className={classes.loginButton}>Login</a>
                 </Paper>
-            </div>
+            </form>
         )
     }
 }

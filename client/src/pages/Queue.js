@@ -29,7 +29,7 @@ class Queue extends Component {
         API.getQueue()
             .then(res => {
             this.setState({ queue: res.data })
-            })
+        })
     }
 
     
