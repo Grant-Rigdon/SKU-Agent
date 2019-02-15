@@ -33,5 +33,12 @@ export default {
     },
     updateStorage: function(data) {        
         return axios.patch("/api/home/", data)
+    },
+    login: function(data) {
+        return axios.post("/api/login",data)
+    },
+    signup: function(data) {
+        console.log(data)
+        return axios.post("/api/signup",data)
     }
 }

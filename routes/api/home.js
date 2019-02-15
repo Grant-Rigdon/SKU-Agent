@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const router = require("express").Router()
 const db = require('../../models')
 
 
@@ -24,8 +24,8 @@ router.route('/:storage')
     .patch((req, res) => {                       
         const storage = db.Storage.updateOne( { _id: req.params.storage }, { $pull: {items:{ item: req.body.id}}})
         const item = db.Item.updateOne({_id: req.body.id}, {$pull: {location: req.params.storage}})
-        storage.then(storage => res.json(storage))
-        item
+        storage.then(item.then(item => res.json(item)))
+        
     })
 
 module.exports = router

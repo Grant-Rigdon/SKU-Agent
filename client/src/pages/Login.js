@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
+import API from '../utils/API'
 
 
 const styles = theme => ({
@@ -52,10 +53,17 @@ class Login extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }))
     }
 
+    onFormSubmit = () => {
+        API.login({
+            email: this.state.name,
+            password: this.state.password
+        }) 
+     }
+
     render() {
         const { classes } = this.props
         return (
-            <div>
+            <form className={classes.container} onSubmit={this.onFormSubmit}>
                 <Paper className={classes.root}>
                     <TextField
                         id="outlined-name"
@@ -87,14 +95,14 @@ class Login extends React.Component {
                             ),
                         }} />
                     <br />
-                    <Button variant="contained" className={classes.button}>
+                    <Button variant="contained" className={classes.button} onClick={this.onFormSubmit}>
                         Login
                     </Button>
                     <Link to='/register' className={classes.registerButton}>
                     Register
                     </Link>
                 </Paper>
-            </div>
+            </form>
         )
     }
 }

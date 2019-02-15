@@ -99,7 +99,7 @@ class LocationModal extends React.Component {
             <Button onClick={this.handleClose}>
               Cancel
             </Button>
-            <Button onClick={this.submitForm}>
+            <Button onClick={this.onFormSubmit}>
               Ok
             </Button>
           </DialogActions>
