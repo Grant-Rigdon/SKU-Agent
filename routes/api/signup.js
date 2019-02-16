@@ -12,11 +12,10 @@ router.route("/")
         password: req.body.password,
         isManager: req.body.isManager
       }).then(function() {
-        res.redirect("/")
+        res.send("Success")
       }).catch(function(err) {
         console.log(err)
-        res.json(err)
-    
+        return res.json(err)
   })
 })
 

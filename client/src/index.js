@@ -46,4 +46,3 @@ if (!window.cordova) {
 } else {
     document.addEventListener('deviceready', startApp, false)
 }
-

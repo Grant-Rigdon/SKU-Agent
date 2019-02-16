@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import classNames from 'classnames'
@@ -43,6 +43,7 @@ class Login extends React.Component {
         name: '',
         password: '',
         showPassword: false,
+        redirect: false
     }
 
     handleChange = prop => event => {
@@ -53,17 +54,33 @@ class Login extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }))
     }
 
+    handleRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to="/home" />
+        }
+    }
+
     onFormSubmit = () => {
         API.login({
             email: this.state.name,
             password: this.state.password
-        }) 
-     }
+        }).then(res => {
+            if (res.data === "Success") {
+                this.setState({
+                    redirect: true
+                })
+            } else if (res.data === "Failed") {
+                console.log('Invalid Login')
+            }
+        })
+    }
 
     render() {
         const { classes } = this.props
+
         return (
             <form className={classes.container} onSubmit={this.onFormSubmit}>
+            {this.handleRedirect()}
                 <Paper className={classes.root}>
                     <TextField
                         id="outlined-name"
@@ -99,7 +116,7 @@ class Login extends React.Component {
                         Login
                     </Button>
                     <Link to='/register' className={classes.registerButton}>
-                    Register
+                        Register
                     </Link>
                 </Paper>
             </form>
