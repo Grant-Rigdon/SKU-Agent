@@ -7,8 +7,6 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import FormControl from '@material-ui/core/FormControl'
-import Fab from '@material-ui/core/Fab'
-import AddIcon from '@material-ui/icons/Add'
 import TextField from '@material-ui/core/TextField'
 import API from '../utils/API'
 
@@ -30,11 +28,10 @@ const styles = theme => ({
   },
 })
 
-class LocationModal extends React.Component {
+class ItemListModal extends React.Component {
   state = {
     open: false,
-    name: '',
-    storage: []
+    quantity: ''
   }
 
   handleChange = name => event => {
@@ -51,14 +48,16 @@ class LocationModal extends React.Component {
 
   
 
-  onFormSubmit = event => {
-    event.preventDefault()
-    API.addStorage({
-      name: this.state.name
-    })
-    .then( () => {
-      this.handleClose()
-      
+  onFormSubmit = () => {
+           
+    API.addQueue({
+        _id: this.props.item._id,
+        name: this.props.item.name,
+        location: this.props.item.location,
+        quantity: this.state.quantity
+  })
+    .then( () => {        
+        this.handleClose()
     })
   }
 
@@ -69,9 +68,9 @@ class LocationModal extends React.Component {
 
     return (
       <div>
-        <Fab aria-label="Add" className={classes.fab} onClick={this.handleClickOpen}>
-          <AddIcon />
-        </Fab>
+        <Button className={classes.newSku} onClick={this.handleClickOpen} color="primary">
+            Add to Queue
+        </Button>
 
         <Dialog
           disableBackdropClick
@@ -85,10 +84,10 @@ class LocationModal extends React.Component {
               <FormControl className={classes.formControl}>
                 <TextField
                   id="outlined-name"
-                  label="Location Name"
+                  label="Quantity Needed"
                   className={classes.textField}
-                  value={this.state.name}
-                  onChange={this.handleChange('name')}
+                  value={this.state.quantity}
+                  onChange={this.handleChange('quantity')}
                   margin="normal"
                   variant="outlined"
                 />
@@ -109,9 +108,9 @@ class LocationModal extends React.Component {
   }
 }
 
-LocationModal.propTypes = {
+ItemListModal.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(LocationModal
+export default withStyles(styles)(ItemListModal
 )

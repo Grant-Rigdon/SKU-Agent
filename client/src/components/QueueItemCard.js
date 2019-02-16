@@ -32,14 +32,47 @@ const styles = theme => ({
 
 class QueueItemCard extends Component {
   state = { 
-      
+      quantityNeeded: this.props.item.quantity,
+      item: this.props.item
    }
   
   handleDelete = (id) => {    
-    API.removeItem({
+    API.removeQueue({
       id: id,
       route: 'queue'
     })
+  }
+
+  onClick = (current, location) => {
+    let currentNum = current[0].quantity 
+
+    if (currentNum > this.state.quantityNeeded){
+      API.removeItem({
+        id: this.props.item._id,
+        route: 'home',
+        location: location
+      })
+      API.updateStorage({
+        item:  this.state.item,      
+        location: location,
+        quantity: ( parseInt(currentNum) - parseInt(this.state.quantityNeeded))})
+      .then( () => {
+          this.handleDelete(this.props.item._id)
+      })
+       
+      
+    }else{
+      this.setState({ quantityNeeded: (parseInt(this.state.quantityNeeded) - parseInt(currentNum) )})
+      API.removeItem({
+        id: this.props.item._id,
+        route: 'home',
+        location: location})
+      .then( () => {
+          this.handleDelete(this.props.item._id)
+      })
+    }
+    
+
   }
 
   render() {
@@ -61,12 +94,12 @@ class QueueItemCard extends Component {
             </IconButton>
           </Typography>
           <Typography component="p">
-            Quantity Needed: {this.props.item.quantity}
+            Quantity Needed: {this.state.quantityNeeded}
           </Typography>
           <div className={classes.buttonContainer} >
-          {this.props.item.location.map(location => (
+          {this.state.item.location.map(location => (
             <Badge className={classes.badge} key={location._id} badgeContent={location.items.map(item => (item.item === this.props.item._id ? item.quantity : ""))}>
-              <Button variant="contained" size="small" className={classes.button}>{location.name}</Button>
+              <Button variant="contained" size="small" className={classes.button} onClick={()=>this.onClick(location.items.filter(item => (item.item === this.props.item._id )),location._id)}>{location.name}</Button>
             </Badge>
           ))}
           </div>

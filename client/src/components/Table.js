@@ -136,7 +136,8 @@ class StorageTable extends React.Component {
   handleDelete = (id) => {      
     API.removeItem({
       id: id,
-      route: 'home'
+      route: 'home',
+      location: this.props.location
     })
   }
 
@@ -157,7 +158,7 @@ class StorageTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
+              {this.props.items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => (
                 <TableRow key={row.item._id}>
                   <TableCell component="th" scope="row">
                     {row.item.name}                    
