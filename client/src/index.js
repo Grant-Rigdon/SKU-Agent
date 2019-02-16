@@ -30,10 +30,20 @@ const theme = createMuiTheme({
     }
 })
 
-ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-    </MuiThemeProvider>,
-    document.getElementById("root")
-)
+function startApp() {
+
+    ReactDOM.render(
+        <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <App />
+        </MuiThemeProvider>,
+        document.getElementById("root")
+    )
+}
+
+if (!window.cordova) {
+    startApp()
+} else {
+    document.addEventListener('deviceready', startApp, false)
+}
+
