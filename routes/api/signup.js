@@ -5,10 +5,9 @@ const db = require('../../models')
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
 router.route("/")
-  .post((req, res) => {
-      console.log(req.body)
+  .post((req, res) => {                
       db.User.create({
-        email: req.body.email,
+        username: req.body.email,
         password: req.body.password,
         isManager: req.body.isManager
       }).then(function() {
@@ -18,6 +17,7 @@ router.route("/")
         res.json(err)
     
   })
+  
 })
 
 module.exports = router

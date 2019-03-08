@@ -55,7 +55,7 @@ class Login extends React.Component {
 
     onFormSubmit = () => {
         API.login({
-            email: this.state.name,
+            username: this.state.name,
             password: this.state.password
         }) 
      }

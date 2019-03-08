@@ -48,7 +48,7 @@ class Register extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }))
     }
 
-    onFormSubmit = () => {        
+    onFormSubmit = () => {                
        API.signup({
            email: this.state.name,
            password: this.state.password,
@@ -56,8 +56,10 @@ class Register extends React.Component {
        }) 
     }
 
+  
     render() {
         const { classes } = this.props
+        
         return (
             <form className={classes.container} onSubmit={this.onFormSubmit}>
                 <Paper className={classes.root} elevation={1}>
