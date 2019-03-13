@@ -36,7 +36,7 @@ function Nav(props) {
                         SKU Agent
                     </Typography>
                     <Link to="/queue" className={classes.queueLink}>
-                        <Badge color="primary" badgeContent={4} >
+                        <Badge color="primary" >
                             <Button>Queue</Button>
                         </Badge>
                     </Link>
