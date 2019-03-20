@@ -1,30 +1,15 @@
 const router = require("express").Router()
-const passport = require('passport')
-const db = require('../../models')
+const passport = require('../../config/passport')
+const User = require('../../models/user')
 
-
-router.post('/', function(req, res) {
-    db.User.findOne({
-      username: req.body.username
-    }, function(err, user) {
-      if (err) throw err;
-  
-      if (!user) {
-        res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
-      } else {
-        // check if password matches
-        user.comparePassword(req.body.password, function (err, isMatch) {
-          if (isMatch && !err) {
-            // if user is found and password is right create a token
-            res.redirect('/home')
-            
-          } else {
-            res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
-          }
-        });
-      }
-    });
-  });
-    
+router.route("/")
+    .post(passport.authenticate("local"), function (req, res) {
+        // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+        // So we're sending the user back the route to the members page because the redirect will happen on the front end
+        // They won't get this or even be able to access this page if they aren't authed
+        User.find({ username: req.body.username }, function () {
+            res.send("Success")
+        })
+    })
 
 module.exports = router

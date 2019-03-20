@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Redirect, Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import classNames from 'classnames'
@@ -38,6 +39,7 @@ class Register extends React.Component {
         name: '',
         password: '',
         showPassword: false,
+        redirect: false
     }
 
     handleChange = prop => event => {
@@ -48,12 +50,24 @@ class Register extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }))
     }
 
-    onFormSubmit = () => {                
-       API.signup({
-           email: this.state.name,
-           password: this.state.password,
-           isManager: true
-       }) 
+    handleRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to="/login" />
+        }
+    }
+
+    onFormSubmit = () => {
+        API.signup({
+            email: this.state.name,
+            password: this.state.password,
+            isManager: true
+        }).then(res => {
+            if (res.data === "Success") {
+                this.setState({
+                    redirect: true
+                })
+            }
+        })
     }
 
   
@@ -62,6 +76,7 @@ class Register extends React.Component {
         
         return (
             <form className={classes.container} onSubmit={this.onFormSubmit}>
+                {this.handleRedirect()}
                 <Paper className={classes.root} elevation={1}>
                     <TextField
                         id="outlined-name"
@@ -99,7 +114,7 @@ class Register extends React.Component {
                     <Button variant="contained" color="primary" className={classes.button} onClick={this.onFormSubmit}>
                         Register
                 </Button>
-                <a href="/" className={classes.loginButton}>Login</a>
+                    <Link to="/" className={classes.loginButton}>Login</Link>
                 </Paper>
             </form>
         )

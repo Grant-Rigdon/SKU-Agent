@@ -68,7 +68,7 @@ class Accordion extends React.Component {
     this.loadStorage()
     
     return (
-      <div className={classes.root}>
+      <div className={classes.root}>      
       {this.state.storage.map(storage => (
         <ExpansionPanel key={storage.name} expanded={expanded === storage.name} onChange={this.handleChange(storage.name)}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

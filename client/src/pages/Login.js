@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import classNames from 'classnames'
@@ -35,6 +35,12 @@ const styles = theme => ({
     registerButton: {
         float: 'right',
         marginTop: 25
+    },
+    logo: {
+        height: 200,
+        width: 200,
+        marginLeft: 70,
+        marginTop: 20
     }
 })
 
@@ -43,6 +49,7 @@ class Login extends React.Component {
         name: '',
         password: '',
         showPassword: false,
+        redirect: false
     }
 
     handleChange = prop => event => {
@@ -53,18 +60,36 @@ class Login extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }))
     }
 
+    handleRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to="/home" />
+        }
+    }
+
     onFormSubmit = () => {
         API.login({
             username: this.state.name,
             password: this.state.password
-        }) 
-     }
+        }).then(res => {
+            if (res.data === "Success") {
+                this.setState({
+                    redirect: true
+                })
+            } else if (res.data === "Failed") {
+                console.log('Invalid Login')
+            }
+        })
+        this.setState({ redirect: true })
+    }
 
     render() {
         const { classes } = this.props
+
         return (
             <form className={classes.container} onSubmit={this.onFormSubmit}>
+            {this.handleRedirect()}
                 <Paper className={classes.root}>
+                    <img src="\SKU.png" alt="logo" className={classes.logo}/>
                     <TextField
                         id="outlined-name"
                         label="Username"
@@ -99,7 +124,7 @@ class Login extends React.Component {
                         Login
                     </Button>
                     <Link to='/register' className={classes.registerButton}>
-                    Register
+                        Register
                     </Link>
                 </Paper>
             </form>

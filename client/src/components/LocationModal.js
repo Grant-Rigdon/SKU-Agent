@@ -57,6 +57,7 @@ class LocationModal extends React.Component {
       name: this.state.name
     })
     .then( () => {
+      this.setState({name: ''})
       this.handleClose()
       
     })
@@ -79,7 +80,7 @@ class LocationModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <DialogTitle>Fill the form</DialogTitle>
+          <DialogTitle>New Storage Location</DialogTitle>
           <DialogContent>
             <form className={classes.container} onSubmit={this.onFormSubmit}>
               <FormControl className={classes.formControl}>

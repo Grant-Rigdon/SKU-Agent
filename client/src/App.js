@@ -13,7 +13,7 @@ function App() {
     return (
         <Router>
             <div>
-                <AppBar />
+                <AppBar />                
                 <Switch>
                     <Route exact path="/" component={Login} />
                     <Route exact path="/Login" component={Login} />

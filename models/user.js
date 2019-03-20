@@ -1,14 +1,13 @@
-let mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  passportLocalMongoose = require('passport-local-mongoose')
+
+const mongoose = require('mongoose')
 const bcrypt = require('bcrypt-nodejs')
+const Schema = mongoose.Schema
 
 const User = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  isManager: {type: Boolean, required: true}
+  isManager: { type: Boolean, required: true }
 })
-
 User.pre('save', function (next) {
   const user = this,
     SALT_FACTOR = 5
@@ -34,5 +33,4 @@ User.methods.comparePassword = function (candidatePassword, cb) {
     cb(null, isMatch)
   })
 }
-User.plugin(passportLocalMongoose)
 module.exports = mongoose.model('User', User)

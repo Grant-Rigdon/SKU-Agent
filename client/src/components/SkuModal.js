@@ -25,7 +25,7 @@ const styles = theme => ({
     bottom: theme.spacing.unit * 2,
     right: theme.spacing.unit * 10,
     backgroundColor: theme.palette.secondary.main
-}
+  }
 })
 
 class SkuModal extends React.Component {
@@ -47,7 +47,20 @@ class SkuModal extends React.Component {
     this.setState({ open: false })
   }
 
-  
+  handleScanner = () => {
+    window.cordova.plugins.barcodeScanner.scan(
+      function (result) {
+        alert("We got a barcode\n" +
+          "Result: " + result.text + "\n" +
+          "Format: " + result.format + "\n" +
+          "Cancelled: " + result.cancelled);
+      },
+      function (error) {
+        alert("Scanning failed: " + error);
+      }
+    )
+  }
+
 
   onFormSubmit = event => {
     console.log('clicked')
@@ -56,10 +69,14 @@ class SkuModal extends React.Component {
       name: this.state.name,
       _id: this.state.sku
     })
-    .then( () => {
-      this.handleClose()
-      
-    })
+      .then(() => {
+        this.setState({
+          name: '',
+          sku: ''
+        })
+        this.handleClose()
+
+      })
   }
 
 
@@ -69,8 +86,8 @@ class SkuModal extends React.Component {
 
     return (
       <div>
-        <Button className={classes.newSku} onClick={this.handleClickOpen} color="primary">
-            Add SKU
+        <Button className={classes.newSku} onClick={this.handleClickOpen} color="error">
+          Add SKU
         </Button>
 
         <Dialog
@@ -111,6 +128,9 @@ class SkuModal extends React.Component {
             <Button onClick={this.onFormSubmit}>
               Ok
             </Button>
+            <Button onClick={this.handleScanner}>
+              Scan Barcode
+        </Button>
           </DialogActions>
         </Dialog>
       </div>

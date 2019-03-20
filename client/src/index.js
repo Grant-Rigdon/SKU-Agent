@@ -16,7 +16,7 @@ const theme = createMuiTheme({
             light: '##ffff52',
             main: '#0892d0',
             dark: '#c7a600',
-            contrastText: '#000000'
+            contrastText: '#ffffff'
         },
         error: {
             light: '#ff5131',
@@ -30,10 +30,19 @@ const theme = createMuiTheme({
     }
 })
 
-ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-    </MuiThemeProvider>,
-    document.getElementById("root")
-)
+function startApp() {
+
+    ReactDOM.render(
+        <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <App />
+        </MuiThemeProvider>,
+        document.getElementById("root")
+    )
+}
+
+if (!window.cordova) {
+    startApp()
+} else {
+    document.addEventListener('deviceready', startApp, false)
+}

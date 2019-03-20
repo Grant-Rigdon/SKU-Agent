@@ -96,9 +96,9 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
 )
 
 let counter = 0
-function createData(name, calories, fat) {
+function createData(item) {
   counter += 1
-  return { id: counter, name, calories, fat }
+  return {  counter, item }
 }
 
 const styles = theme => ({
@@ -118,8 +118,10 @@ class StorageTable extends React.Component {
   
   state = {
     rows: [
-      this.props.items
-    ].sort(),
+      this.props.items.map((r) => (
+        r
+      ))   
+    ],
     page: 0,
     rowsPerPage: 5,
   }
@@ -144,7 +146,7 @@ class StorageTable extends React.Component {
   render() {
     const { classes } = this.props
     const { rows, rowsPerPage, page } = this.state
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
+    
     
     return (
       <Paper className={classes.root}>
@@ -158,7 +160,7 @@ class StorageTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => (
+              {this.props.items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                 <TableRow key={row.item._id}>
                   <TableCell component="th" scope="row">
                     {row.item.name}                    
@@ -176,11 +178,7 @@ class StorageTable extends React.Component {
                   </IconButton>
                 </TableRow>
               ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 48 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
+              
             </TableBody>
             <TableFooter>
               <TableRow>
