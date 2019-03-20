@@ -1,19 +1,36 @@
+
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt-nodejs')
 const Schema = mongoose.Schema
 
 const User = new Schema({
-  email: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   isManager: { type: Boolean, required: true }
 })
+User.pre('save', function (next) {
+  const user = this,
+    SALT_FACTOR = 5
 
-// User.pre('save', function () {
-//   this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10), null)
-// })
+  if (!user.isModified('password')) return next()
 
-// User.methods.validPassword = function (password) {
-//   return bcrypt.compareSync(password, this.password)
-// }
+  bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
+    if (err) return next(err)
 
+    bcrypt.hash(user.password, salt, null, (err, hash) => {
+      if (err) return next(err)
+      user.password = hash
+      next()
+    })
+  })
+})
+
+// Method to compare password for login
+User.methods.comparePassword = function (candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) { return cb(err) }
+
+    cb(null, isMatch)
+  })
+}
 module.exports = mongoose.model('User', User)

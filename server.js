@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes)
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/skuAgent")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/skuAgent" || 'mongodb+srv://grant:stuff@cluster0-iyij8.mongodb.net/test?retryWrites=true')
 
 // Start the API server
 app.listen(PORT, function () {

@@ -70,8 +70,10 @@ class Register extends React.Component {
         })
     }
 
+  
     render() {
         const { classes } = this.props
+        
         return (
             <form className={classes.container} onSubmit={this.onFormSubmit}>
                 {this.handleRedirect()}

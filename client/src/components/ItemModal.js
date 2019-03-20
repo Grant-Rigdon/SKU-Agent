@@ -64,6 +64,10 @@ class ItemModal extends React.Component {
       location: this.props.id,
       quantity: this.state.quantity})
     .then( () => {
+      this.setState({
+        item: '',
+        quantity: ''
+      })
       this.handleClose()
       
     })

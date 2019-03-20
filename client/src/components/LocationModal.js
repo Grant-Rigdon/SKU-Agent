@@ -57,6 +57,7 @@ class LocationModal extends React.Component {
       name: this.state.name
     })
     .then( () => {
+      this.setState({name: ''})
       this.handleClose()
       
     })

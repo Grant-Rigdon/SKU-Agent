@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom'
 
 const options = [
   {
+    name: 'Home',
+    link: '/home'
+  },
+  {
     name: 'Add User',
-    link: '/'
+    link: '/register'
   },
   {
     name: 'Add SKU',
     link: "/newsku"
-  },
-  {
-    name: 'Add Location',
-    link: '/home'
-  },
+  },  
   {
     name: 'Logout',
     link: '/logout'

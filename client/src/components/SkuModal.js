@@ -70,6 +70,10 @@ class SkuModal extends React.Component {
       _id: this.state.sku
     })
       .then(() => {
+        this.setState({
+          name: '',
+          sku: ''
+        })
         this.handleClose()
 
       })
@@ -82,7 +86,7 @@ class SkuModal extends React.Component {
 
     return (
       <div>
-        <Button className={classes.newSku} onClick={this.handleClickOpen} color="primary">
+        <Button className={classes.newSku} onClick={this.handleClickOpen} color="error">
           Add SKU
         </Button>
 

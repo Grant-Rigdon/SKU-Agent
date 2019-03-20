@@ -96,13 +96,14 @@ class QueueItemCard extends Component {
           <Typography component="p">
             Quantity Needed: {this.state.quantityNeeded}
           </Typography>
-          <div className={classes.buttonContainer} >
+          
           {this.state.item.location.map(location => (
-            <Badge className={classes.badge} key={location._id} badgeContent={location.items.map(item => (item.item === this.props.item._id ? item.quantity : ""))}>
+          <div className={classes.buttonContainer} >
+            <Badge className={classes.badge} color="secondary" key={location._id} badgeContent={location.items.map(item => (item.item === this.props.item._id ? item.quantity : ""))}>
               <Button variant="contained" size="small" className={classes.button} onClick={()=>this.onClick(location.items.filter(item => (item.item === this.props.item._id )),location._id)}>{location.name}</Button>
             </Badge>
-          ))}
-          </div>
+          
+          </div>))}
         </Paper>
       </div>
     )

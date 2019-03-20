@@ -35,6 +35,12 @@ const styles = theme => ({
     registerButton: {
         float: 'right',
         marginTop: 25
+    },
+    logo: {
+        height: 200,
+        width: 200,
+        marginLeft: 70,
+        marginTop: 20
     }
 })
 
@@ -62,7 +68,7 @@ class Login extends React.Component {
 
     onFormSubmit = () => {
         API.login({
-            email: this.state.name,
+            username: this.state.name,
             password: this.state.password
         }).then(res => {
             if (res.data === "Success") {
@@ -73,6 +79,7 @@ class Login extends React.Component {
                 console.log('Invalid Login')
             }
         })
+        this.setState({ redirect: true })
     }
 
     render() {
@@ -82,6 +89,7 @@ class Login extends React.Component {
             <form className={classes.container} onSubmit={this.onFormSubmit}>
             {this.handleRedirect()}
                 <Paper className={classes.root}>
+                    <img src="\SKU.png" alt="logo" className={classes.logo}/>
                     <TextField
                         id="outlined-name"
                         label="Username"
